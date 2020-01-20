@@ -113,11 +113,11 @@ int main(int argc, char *argv[])
   for (i=0; i<100000; i++){
     cipher_len=strlen(ptext)+EVP_MAX_BLOCK_LENGTH;   // 暗号データの長さを仮置き（Byte)
     enc=(unsigned char *)calloc(cipher_len,sizeof(char));
-    EVP_CIPHER_CTX_init(&ctx);
-    EVP_EncryptInit_ex(&ctx, EVP_des_ede(), NULL, (unsigned char *)key_16, NULL);
-    EVP_EncryptUpdate(&ctx, enc, &cipher_len, (unsigned char *)ptext, strlen(ptext));
-    EVP_EncryptFinal_ex(&ctx,(unsigned char *)(enc+cipher_len),&f_len);
-    EVP_CIPHER_CTX_cleanup(&ctx);
+    EVP_CIPHER_CTX_init(ctx);
+    EVP_EncryptInit_ex(ctx, EVP_des_ede(), NULL, (unsigned char *)key_16, NULL);
+    EVP_EncryptUpdate(ctx, enc, &cipher_len, (unsigned char *)ptext, strlen(ptext));
+    EVP_EncryptFinal_ex(ctx,(unsigned char *)(enc+cipher_len),&f_len);
+    EVP_CIPHER_CTX_cleanup(ctx);
     enc_len = cipher_len+f_len;  // 出力された暗号化データの長さ（Byte)
   }
   end_time =  clock();
@@ -131,11 +131,11 @@ int main(int argc, char *argv[])
   for (i=0; i<100000; i++){
     plain_len=enc_len+EVP_MAX_BLOCK_LENGTH;  // 復号データの長さを仮置き（Byte)
     dec=(unsigned char *)calloc(plain_len,sizeof(char));
-    EVP_CIPHER_CTX_init(&ctx);
-    EVP_DecryptInit_ex(&ctx, EVP_des_ede(), NULL, (unsigned char*)key_16, NULL);
-    EVP_DecryptUpdate(&ctx, dec, &plain_len, (unsigned char *)enc, cipher_len+f_len);
-    EVP_DecryptFinal_ex(&ctx,(unsigned char *)(dec+plain_len),&f_len);
-    EVP_CIPHER_CTX_cleanup(&ctx);
+    EVP_CIPHER_CTX_init(ctx);
+    EVP_DecryptInit_ex(ctx, EVP_des_ede(), NULL, (unsigned char*)key_16, NULL);
+    EVP_DecryptUpdate(ctx, dec, &plain_len, (unsigned char *)enc, cipher_len+f_len);
+    EVP_DecryptFinal_ex(ctx,(unsigned char *)(dec+plain_len),&f_len);
+    EVP_CIPHER_CTX_cleanup(ctx);
   }
   end_time =  clock();
   run_time = (double)(end_time - first_time) / (double)CLOCKS_PER_SEC;
@@ -202,11 +202,11 @@ int main(int argc, char *argv[])
   for (i=0; i<100000; i++){
     cipher_len=strlen(ptext)+EVP_MAX_BLOCK_LENGTH;
     enc=(unsigned char *)calloc(cipher_len,sizeof(char));
-    EVP_CIPHER_CTX_init(&ctx);
-    EVP_EncryptInit_ex(&ctx, EVP_des_ede3(), NULL, (unsigned char *)key_24, NULL);
-    EVP_EncryptUpdate(&ctx, enc, &cipher_len, (unsigned char *)ptext, strlen(ptext));
-    EVP_EncryptFinal_ex(&ctx,(unsigned char *)(enc+cipher_len),&f_len);
-    EVP_CIPHER_CTX_cleanup(&ctx);
+    EVP_CIPHER_CTX_init(ctx);
+    EVP_EncryptInit_ex(ctx, EVP_des_ede3(), NULL, (unsigned char *)key_24, NULL);
+    EVP_EncryptUpdate(ctx, enc, &cipher_len, (unsigned char *)ptext, strlen(ptext));
+    EVP_EncryptFinal_ex(ctx,(unsigned char *)(enc+cipher_len),&f_len);
+    EVP_CIPHER_CTX_cleanup(ctx);
     enc_len = cipher_len+f_len;  // 出力された暗号化データの長さ（Byte)
   }
   end_time =  clock();
@@ -220,11 +220,11 @@ int main(int argc, char *argv[])
   for (i=0; i<100000; i++){
     plain_len=enc_len+EVP_MAX_BLOCK_LENGTH;  // 復号データの長さを仮置き（Byte)
     dec=(unsigned char *)calloc(plain_len,sizeof(char));
-    EVP_CIPHER_CTX_init(&ctx);
-    EVP_DecryptInit_ex(&ctx, EVP_des_ede3(), NULL, (unsigned char*)key_24, NULL);
-    EVP_DecryptUpdate(&ctx, dec, &plain_len, (unsigned char *)enc, cipher_len+f_len);
-    EVP_DecryptFinal_ex(&ctx,(unsigned char *)(dec+plain_len),&f_len);
-    EVP_CIPHER_CTX_cleanup(&ctx);
+    EVP_CIPHER_CTX_init(ctx);
+    EVP_DecryptInit_ex(ctx, EVP_des_ede3(), NULL, (unsigned char*)key_24, NULL);
+    EVP_DecryptUpdate(ctx, dec, &plain_len, (unsigned char *)enc, cipher_len+f_len);
+    EVP_DecryptFinal_ex(ctx,(unsigned char *)(dec+plain_len),&f_len);
+    EVP_CIPHER_CTX_cleanup(ctx);
   }
   end_time =  clock();
   run_time = (double)(end_time - first_time) / (double)CLOCKS_PER_SEC;
@@ -290,11 +290,11 @@ int main(int argc, char *argv[])
   for (i=0; i<100000; i++){
     cipher_len=strlen(ptext)+EVP_MAX_BLOCK_LENGTH;
     enc=(unsigned char *)calloc(cipher_len,sizeof(char));
-    EVP_CIPHER_CTX_init(&ctx);
-    EVP_EncryptInit_ex(&ctx, EVP_aes_128_ecb(), NULL, (unsigned char *)key_16, NULL);
-    EVP_EncryptUpdate(&ctx, enc, &cipher_len, (unsigned char *)ptext, strlen(ptext));
-    EVP_EncryptFinal_ex(&ctx,(unsigned char *)(enc+cipher_len),&f_len); 
-    EVP_CIPHER_CTX_cleanup(&ctx);
+    EVP_CIPHER_CTX_init(ctx);
+    EVP_EncryptInit_ex(ctx, EVP_aes_128_ecb(), NULL, (unsigned char *)key_16, NULL);
+    EVP_EncryptUpdate(ctx, enc, &cipher_len, (unsigned char *)ptext, strlen(ptext));
+    EVP_EncryptFinal_ex(ctx,(unsigned char *)(enc+cipher_len),&f_len);
+    EVP_CIPHER_CTX_cleanup(ctx);
     enc_len = cipher_len+f_len;  // 出力された暗号化データの長さ（Byte)
   }
   end_time =  clock();
@@ -308,11 +308,11 @@ int main(int argc, char *argv[])
   for (i=0; i<100000; i++){
     plain_len=enc_len+EVP_MAX_BLOCK_LENGTH;  // 復号データの長さを仮置き（Byte)
     dec=(unsigned char *)calloc(plain_len,sizeof(char));
-    EVP_CIPHER_CTX_init(&ctx);
-    EVP_DecryptInit_ex(&ctx, EVP_aes_128_ecb(), NULL, (unsigned char*)key_16, NULL);
-    EVP_DecryptUpdate(&ctx, dec, &plain_len, (unsigned char *)enc, cipher_len+f_len);
-    EVP_DecryptFinal_ex(&ctx,(unsigned char *)(dec+plain_len),&f_len);
-    EVP_CIPHER_CTX_cleanup(&ctx);
+    EVP_CIPHER_CTX_init(ctx);
+    EVP_DecryptInit_ex(ctx, EVP_aes_128_ecb(), NULL, (unsigned char*)key_16, NULL);
+    EVP_DecryptUpdate(ctx, dec, &plain_len, (unsigned char *)enc, cipher_len+f_len);
+    EVP_DecryptFinal_ex(ctx,(unsigned char *)(dec+plain_len),&f_len);
+    EVP_CIPHER_CTX_cleanup(ctx);
   }
   end_time =  clock();
   run_time = (double)(end_time - first_time) / (double)CLOCKS_PER_SEC;
