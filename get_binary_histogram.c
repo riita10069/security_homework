@@ -1,5 +1,5 @@
 /*
- * ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Ì•p“x•ª•z‚ğ¶¬‚·‚éƒvƒƒOƒ‰ƒ€
+ * ï¿½oï¿½Cï¿½iï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ì•pï¿½xï¿½ï¿½ï¿½zï¿½ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
  */
 
 #include <stdio.h>
@@ -46,11 +46,11 @@ const void *dump(const void *addr, size_t bytes)
 int getFSZ(FILE *fp)
 {
   int size = 0;
-  
+
   fseek( fp, 0, SEEK_END );
    size = ftell(fp);
   fseek(fp, 0, SEEK_SET );
-  
+
    return size;
 }
 
@@ -60,20 +60,24 @@ void get_binary_histogram(unsigned char *input, int *char_hist)
 	int i, j, t;
 	int len;
 
-	/*@ƒoƒCƒg—ñ‚Ì’·‚³æ“¾ */
+	/*ï¿½@ï¿½oï¿½Cï¿½gï¿½ï¿½ï¿½Ì’ï¿½ï¿½ï¿½ï¿½æ“¾ */
 	len = strlen(input);
-        printf("len:%d\n",len);
 
-	/* ƒqƒXƒgƒOƒ‰ƒ€‚Ì‰Šú‰» */
+	/* ï¿½qï¿½Xï¿½gï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ */
 	for(i = 0; i < 256; i++)
 	{
 		char_hist[i] = 0;
 	}
 
-/*******@‚±‚±‚ÉƒqƒXƒgƒOƒ‰ƒ€•ª•z‚ğ’è‹`‚·‚éƒR[ƒh‚ğ‹Lq‚µ‚Ä‚­‚¾‚³‚¢B@*******/
-/*******@ŠeƒoƒCƒg’l‚Ì•p“x‚ÍAŠeƒoƒCƒg’l‚ği‚Æ‚·‚é‚Æchar_hist[i]‚Å’è @*******/
-/*******@‹`‚³‚ê‚Ü‚·Bfor•¶‚ğg‚¦‚Î1s‚Å‘‚¯‚Ü‚·B@@@@@@@@    *******/
-    for (i = 0; i < len; i++) char_hist[input[i]] += 1;
+  /*
+	 *æ›¸ãè¾¼ã¿ç®‡æ‰€
+	 *ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ ã®ä½œæˆ
+	 */
+  for(i = 0; i < len; i++)
+	{
+		char_hist[input[i]] ++;
+	}
+
 }
 
 
@@ -88,38 +92,38 @@ int main(void)
 
 	int i;
 
-	/* “ü—Íƒtƒ@ƒCƒ‹ƒI[ƒvƒ“ */
+	/* ï¿½ï¿½ï¿½Íƒtï¿½@ï¿½Cï¿½ï¿½ï¿½Iï¿½[ï¿½vï¿½ï¿½ */
 	if((fp = fopen("crypted", "rb")) == NULL)
 	{
 		puts("file not open");
 		exit(0);
 	}
-	
+
 	if((fo = fopen("binary_histgram.txt", "w")) == NULL)
 	{
 		puts("er");
 		exit(0);
 	}
 
-	/* “Ç‚İ‚İƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğ‹‚ß‚é */
+	/* ï¿½Ç‚İï¿½ï¿½İƒtï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½Tï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ */
 	fsize = getFSZ(fp);
 
-	/* ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İE•\¦ */
+	/* ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ì“Ç‚İï¿½ï¿½İEï¿½\ï¿½ï¿½ */
 	printf("\n\n");
 	printf("*****************************************************\n");
 	printf("********       Binary file is dumped.      **********\n");
 	printf("*****************************************************\n\n\n");
 
-	fread(input_binary, sizeof(unsigned char), fsize, fp);	
+	fread(input_binary, sizeof(unsigned char), fsize, fp);
 
 	dump(input_binary, fsize);
 
 	printf("\n\n");
-	
-	/*  ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ÌƒqƒXƒgƒOƒ‰ƒ€‚ğ‹‚ß‚é */
+
+	/*  ï¿½oï¿½Cï¿½iï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒqï¿½Xï¿½gï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ */
 	get_binary_histogram(input_binary, binary_hist);
 
-	/* ƒqƒXƒgƒOƒ‰ƒ€‚Ì•\¦E‘‚«‚İ */
+	/* ï¿½qï¿½Xï¿½gï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Ì•\ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	printf("\n\n");
 	printf("*****************************************************\n");
 	printf("**********    Histogram is displayed.   ***********\n");
@@ -133,7 +137,7 @@ int main(void)
 	}
 
 
-	/* I—¹ˆ— */
+	/* ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	fclose(fp);
 	fclose(fo);
 
